@@ -2,10 +2,10 @@ local u = PUG.util
 
 local hooks = {}
 local settings = {
-	["AddFadingDoorHooks"] = true,
-	["BlockToolUseOnWorld"] = true,
-	["BlockToolSpam"] = true,
-	["BlockObjSpam"] = true,
+	["AddFadingDoorHooks"] = false,
+	["BlockToolUseOnWorld"] = false,
+	["BlockToolSpam"] = false,
+	["BlockObjSpam"] = false,
 	["ToolFreezes"] = false,
 	["SpamToolDelay"] = 1,
 	["SpamToolRate"] = 7,

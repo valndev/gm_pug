@@ -5,11 +5,11 @@ local u = PUG.util
 local hooks = {}
 local settings = {
 	["GhostColour"] = {4, 20, 36, 250},
-	["GhostOnSetPos"] = true,
-	["GhostOnSpawn"] = true,
+	["GhostOnSetPos"] = false,
+	["GhostOnSpawn"] = false,
 	["GhostNoCollide"] = false,
 	["GroupOverride"] = true,
-	["TryUnGhostOnSpawn"] = true,
+	["TryUnGhostOnSpawn"] = false,
 }
 
 settings = u.getSettings( settings )
@@ -170,9 +170,9 @@ function PUG:UnGhost( ent )
 	local trap = isTrap(ent)
 	local moving = u.entityIsMoving(ent, 9.3)
 
-	if not ( trap or moving ) then
+	if not trap then
 		u.entityForceDrop( ent )
-		u.sleepEntity( ent )
+		if not moving then u.sleepEntity( ent ) end
 		ent:DrawShadow( true )
 
 		ent:SetRenderMode( ent.PUGGhost.render or RENDERMODE_NORMAL )
@@ -201,9 +201,7 @@ function PUG:UnGhost( ent )
 
 		return true
 	else
-		if trap then
-			u.notifyOwner( "pug_istrap", 1, 4, ent )
-		end
+		u.notifyOwner( "pug_istrap", 1, 4, ent )
 		return false
 	end
 end

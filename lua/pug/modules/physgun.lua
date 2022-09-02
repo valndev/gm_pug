@@ -3,7 +3,7 @@ local u = PUG.util
 local hooks = {}
 local settings = {
 	["AlwaysFrozen"] = false,
-	["NoThrowing"] = false,
+	["NoThrowing"] = true,
 	["NoPhysgunReload"] = false,
 	["NoVehiclePickup"] = false,
 }

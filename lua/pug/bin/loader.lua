@@ -110,11 +110,11 @@ function PUG:saveConfig( data )
 		for k, v in next, self.modules do
 			if v.enabled then
 				self:load( k )
-				print("[PUGLoader] ", k, " has been loaded!")
+				print("~ PUG: ", k, " has been loaded!")
 			else
 				if v.loaded and not v.enabled then
 					self:unLoad( k )
-					print("[PUGLoader] ", k, " has been removed!")
+					print("~ PUG: ", k, " has been removed!")
 				end
 			end
 		end
@@ -132,11 +132,10 @@ if not PUG.hasLoaded then
 	local loadTime = math.Round( ( SysTime() - PUG.InitAt ), 3 )
 	loadTime = loadTime == 0 and "2fast4u" or loadTime
 
-	print("PUG has hopped onto your server! Your physics are safe with PUG.")
 	print("PUG took " .. loadTime .. " seconds to arrive!")
-	print("-- [PUG] Ready! --")
+	print("~ PUG is ready to rock!")
 
 	PUG.hasLoaded = true
 else
-	print("-- [PUG] Refreshed! --")
+	print("~ PUG has been refreshed!")
 end

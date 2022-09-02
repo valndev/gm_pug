@@ -29,7 +29,7 @@ end)
 local function log( msg )
 	ServerLog( msg )
 	if epoe and type( epoe.PushMsgC ) == "function" then
-		epoe.PushMsgC( Color(255,255,255), "[PUG] " .. msg .. "\n" )
+		epoe.PushMsgC( Color(255,255,255), "~ PUG: " .. msg .. "\n" )
 	end
 end
 
@@ -105,6 +105,7 @@ net.Receive("pug.take", function( len, ply )
 		return
 	end
 
+	local playername = ply:GetName()
 	local steamid = ply:SteamID()
 	local nFlood = antiFlood[ steamid ] or 0
 	nFlood = nFlood < CurTime()
@@ -118,8 +119,8 @@ net.Receive("pug.take", function( len, ply )
 		if data then
 			data = util.Decompress( data, len )
 
-			local msg = "PUG Settings Updated "
-			msg = msg .. "by " .. steamid .. "!"
+			local msg = "PUG settings updated "
+			msg = msg .. "by " .. playername .. " (" .. steamid .. ")"
 
 			PUG:Notify( msg, 0, 4, "supers" )
 			PUG:saveConfig( data )
